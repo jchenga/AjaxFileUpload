@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<iframe src="@Url.Action("UPloadFile", new { id = ViewBag.FileId})"></iframe>
+<p id="progress"></p>
+
+<script type="text/javascript">
+    var progress = 0;
+
+    function checkForProgress() {
+        $.ajax({
+            url: "@Url.Action("Status", "Home", new  { id = ViewBag.FileId })",
+            success: function (data, status, jqXhr) {
+                if (data.isok) {
+                    progress = data.message;
+                    $("#progress").html(progress);
+                    setTimeout(checkForProgress, 200);
+                }
+            }
+        });
+    }
+
+    $(function () {
+        setTimeout(checkForProgress, 1000);
+    });
+</script>

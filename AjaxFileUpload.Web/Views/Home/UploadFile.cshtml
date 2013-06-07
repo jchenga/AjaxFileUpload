@@ -1,0 +1,18 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>FileUpload frame</title>
+</head>
+<body>
+    <form method="post" enctype="multipart/form-data" action="/Home/SaveFile?id=@ViewBag.FileId">
+        <input type="file" name="file" />
+        <input type="submit" value="Upload" />
+    </form>
+</body>
+</html>
